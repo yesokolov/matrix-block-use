@@ -10,10 +10,13 @@
 
 namespace yesokolov\matrixblockuse\controllers;
 
+use craft\elements\MatrixBlock;
 use yesokolov\matrixblockuse\MatrixBlockUse;
 
 use Craft;
 use craft\web\Controller;
+use craft\elements\Entry;
+use yesokolov\matrixblockuse\assetbundles\matrixblockusecpsection\MatrixBlockUseCPSectionAsset;
 
 /**
  * @author    Ye. Sokolov
@@ -31,7 +34,7 @@ class MainController extends Controller
      *         The actions must be in 'kebab-case'
      * @access protected
      */
-    protected $allowAnonymous = ['index', 'do-something'];
+    protected $allowAnonymous = ['index'];
 
     // Public Methods
     // =========================================================================
@@ -41,18 +44,19 @@ class MainController extends Controller
      */
     public function actionIndex()
     {
-        $result = 'Welcome to the MainController actionIndex() method';
+        $entries = Entry::findAll();
+        $e = 0;
+        foreach ($entries as $entry){
+//            $rEntries[$e] = array('title' => $entry -> title, 'section' => $entry->section->name);
 
-        return $result;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function actionDoSomething()
-    {
-        $result = 'Welcome to the MainController actionDoSomething() method';
-
-        return $result;
+            $blocks = MatrixBlock::find()->owner($entry)->all();
+            $b = 0;
+            foreach($blocks as $block){
+                $rBlocks[$block->type->name][$entry->section->name][] = $entry->title;
+                $b++;
+            }
+            $e++;
+        }
+        return $this -> renderTemplate('matrix-block-use/matrix-block-use.twig', [ 'blocks' => $rBlocks ]);
     }
 }

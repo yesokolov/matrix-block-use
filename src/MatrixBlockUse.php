@@ -74,17 +74,9 @@ class MatrixBlockUse extends Plugin
 
         Event::on(
             UrlManager::class,
-            UrlManager::EVENT_REGISTER_SITE_URL_RULES,
-            function (RegisterUrlRulesEvent $event) {
-                $event->rules['siteActionTrigger1'] = 'matrix-block-use/main';
-            }
-        );
-
-        Event::on(
-            UrlManager::class,
             UrlManager::EVENT_REGISTER_CP_URL_RULES,
             function (RegisterUrlRulesEvent $event) {
-                $event->rules['cpActionTrigger1'] = 'matrix-block-use/main/do-something';
+                $event->rules['matrix-block-use'] = 'matrix-block-use/main';
             }
         );
 

@@ -16,7 +16,6 @@
 {% extends "_layouts/cp" %}
 {% import "_includes/forms" as forms %}
 
-{% do view.registerAssetBundle("yesokolov\\matrixblockuse\\assetbundles\\matrixblockuse\\MatrixBlockUseAsset") %}
 {% do view.registerAssetBundle("yesokolov\\matrixblockuse\\assetbundles\\matrixblockusecpsection\\MatrixBlockUseCPSectionAsset") %}
 
 {% set docsUrl = "https://github.com/yesokolov/matrix-block-use/blob/master/README.md" %}
@@ -37,4 +36,15 @@
     <h2>{{ "MatrixBlockUse CP Section body goes here"|t('matrix-block-use') }}</h2>
     <img src="{{ iconUrl }}" height="64" width="64" />
     <p class="textline"></p>
+
+    {% for block in blocks %}
+        {% for key in block|keys %}
+            {{ key ~ ':' }}<br>
+        {% endfor %}
+        {% for section in block %}
+            {% for entry in section %}
+                {{ entry }}<br>
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
 {% endset %}
