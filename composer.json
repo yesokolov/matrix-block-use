@@ -1,0 +1,46 @@
+{
+    "name": "yesokolov/matrix-block-use",
+    "description": "Matrix  blocks use entries list",
+    "type": "craft-plugin",
+    "version": "0.0.1",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "matrix block use"
+    ],
+    "support": {
+        "docs": "https://github.com/yesokolov/matrix-block-use/blob/master/README.md",
+        "issues": "https://github.com/yesokolov/matrix-block-use/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ye. Sokolov",
+            "homepage": "http://site.url"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0"
+    },
+    "require-dev": {
+      "craftcms/cms": "^3.2.0",
+      "codeception/codeception": "^3.0",
+      "vlucas/phpdotenv": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "yesokolov\\matrixblockuse\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Matrix Block Use",
+        "handle": "matrix-block-use",
+        "developer": "Ye. Sokolov",
+        "developerUrl": "http://site.url",
+        "documentationUrl": "https://github.com/yesokolov/matrix-block-use/blob/master/README.md",
+        "changelogUrl": "https://raw.githubusercontent.com/yesokolov/matrix-block-use/master/CHANGELOG.md",
+        "class": "yesokolov\\matrixblockuse\\MatrixBlockUse"
+    }
+}

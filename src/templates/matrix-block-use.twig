@@ -1,0 +1,40 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Matrix Block Use plugin for Craft CMS 3.x
+ *
+ * Matrix Block Use index.twig
+ *
+ * @author    Ye. Sokolov
+ * @copyright Copyright (c) 2021 Ye. Sokolov
+ * @link      http://site.url
+ * @package   MatrixBlockUse
+ * @since     0.0.1
+ */
+#}
+
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("yesokolov\\matrixblockuse\\assetbundles\\matrixblockuse\\MatrixBlockUseAsset") %}
+{% do view.registerAssetBundle("yesokolov\\matrixblockuse\\assetbundles\\matrixblockusecpsection\\MatrixBlockUseCPSectionAsset") %}
+
+{% set docsUrl = "https://github.com/yesokolov/matrix-block-use/blob/master/README.md" %}
+
+{% set title = "Matrix Block Use" %}
+
+{% set pluginCpUrl = url('matrix-block-use') %}
+
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@yesokolov/matrixblockuse/assetbundles/matrixblockusecpsection/dist', true) ~ '/img/MatrixBlockUse-icon.svg' %}
+
+{% set extraPageHeaderHtml %}
+    <div class="buttons">
+        <a href="{{ pluginCpUrl }}" class="btn submit add icon">{{ "Click Me!"|t('matrix-block-use') }}</a>
+    </div>
+{% endset %}
+
+{% set content %}
+    <h2>{{ "MatrixBlockUse CP Section body goes here"|t('matrix-block-use') }}</h2>
+    <img src="{{ iconUrl }}" height="64" width="64" />
+    <p class="textline"></p>
+{% endset %}
