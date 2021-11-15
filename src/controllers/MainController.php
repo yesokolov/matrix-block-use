@@ -47,8 +47,6 @@ class MainController extends Controller
         $entries = Entry::findAll();
         $e = 0;
         foreach ($entries as $entry){
-//            $rEntries[$e] = array('title' => $entry -> title, 'section' => $entry->section->name);
-
             $blocks = MatrixBlock::find()->owner($entry)->all();
             $b = 0;
             foreach($blocks as $block){

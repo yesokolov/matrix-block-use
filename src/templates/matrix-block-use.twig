@@ -33,18 +33,45 @@
 {% endset %}
 
 {% set content %}
-    <h2>{{ "MatrixBlockUse CP Section body goes here"|t('matrix-block-use') }}</h2>
-    <img src="{{ iconUrl }}" height="64" width="64" />
-    <p class="textline"></p>
+     <style>
+         table, td {
+             border-collapse: separate;
+             border: 1px solid #999;
+         }
+     </style>
+    <table class="table" border>
+        <thead>
+            <tr>
+                <td>Component</td>
+                <td>Section</td>
+                <td>Entries</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for component in blocks|keys %}
+                <tr>
+                    {% set blockLength = 0 %}
+                    {% for section in blocks[component]|keys %}
+                        {% for entry in blocks[component][section]  %}
+                            {% set blockLength = blockLength + 1 %}
+                        {% endfor %}
+                    {% endfor %}
+                    <td rowspan="{{ blockLength }}">{{ component }}</td>
 
-    {% for block in blocks %}
-        {% for key in block|keys %}
-            {{ key ~ ':' }}<br>
-        {% endfor %}
-        {% for section in block %}
-            {% for entry in section %}
-                {{ entry }}<br>
+                    {% for section in blocks[component]|keys %}
+                        {% set second = loop.first ? false : true %}
+                        {{ second == true ? '<tr>' }}
+                            <td rowspan="{{ blocks[component][section]|length }}">{{ section }}</td>
+                            {% for entry in blocks[component][section] %}
+                                {% set loopEntry = loop.index == 1 ? false : true %}
+                                {{ loopEntry == true ? '<tr>' }}
+                                    <td>{{ entry }}</td>
+                                {{ loopEntry == true ? '</tr>' }}
+                            {% endfor %}
+                        {{ second == true ? '</tr>' }}
+                    {% endfor %}
+                </tr>
             {% endfor %}
-        {% endfor %}
-    {% endfor %}
+        </tbody>
+    </table>
 {% endset %}
