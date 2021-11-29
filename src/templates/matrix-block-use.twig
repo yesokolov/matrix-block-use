@@ -39,6 +39,10 @@
              border: 1px solid #999;
          }
      </style>
+<<<<<<< HEAD
+=======
+    <a href="/admin/matrix-block-use/generate-excel"> Export to Excel</a>
+>>>>>>> 587dbf9 (to pull)
     <table class="table" border>
         <thead>
             <tr>
@@ -65,7 +69,11 @@
                             {% for entry in blocks[component][section] %}
                                 {% set loopEntry = loop.index == 1 ? false : true %}
                                 {{ loopEntry == true ? '<tr>' }}
+<<<<<<< HEAD
                                     <td>{{ entry }}</td>
+=======
+                                <td><a href="{{ entry.url }}">{{ entry.title }}</a></td>
+>>>>>>> 587dbf9 (to pull)
                                 {{ loopEntry == true ? '</tr>' }}
                             {% endfor %}
                         {{ second == true ? '</tr>' }}

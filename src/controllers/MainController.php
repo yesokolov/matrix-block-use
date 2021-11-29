@@ -17,7 +17,6 @@ use Craft;
 use craft\web\Controller;
 use craft\elements\Entry;
 use yesokolov\matrixblockuse\assetbundles\matrixblockusecpsection\MatrixBlockUseCPSectionAsset;
-
 /**
  * @author    Ye. Sokolov
  * @package   MatrixBlockUse
@@ -34,7 +33,11 @@ class MainController extends Controller
      *         The actions must be in 'kebab-case'
      * @access protected
      */
+<<<<<<< HEAD
     protected $allowAnonymous = ['index'];
+=======
+    protected $allowAnonymous = ['index','generate-excel'];
+>>>>>>> 587dbf9 (to pull)
 
     // Public Methods
     // =========================================================================
@@ -44,6 +47,7 @@ class MainController extends Controller
      */
     public function actionIndex()
     {
+<<<<<<< HEAD
         $entries = Entry::findAll();
         $e = 0;
         foreach ($entries as $entry){
@@ -57,4 +61,15 @@ class MainController extends Controller
         }
         return $this -> renderTemplate('matrix-block-use/matrix-block-use.twig', [ 'blocks' => $rBlocks ]);
     }
+=======
+        $rBlocks = MatrixBlockUse::getData();
+        return $this -> renderTemplate('matrix-block-use/matrix-block-use.twig', [ 'blocks' => $rBlocks ]);
+    }
+    public function actionGenerateExcel(){
+        $rBlocks = MatrixBlockUse::getData();
+        $excelFile = MatrixBlockUse::generateExcel($rBlocks);
+        $excelFile -> save('excel-file.xlsx');
+        return $this->redirect('excel-file.xlsx');
+    }
+>>>>>>> 587dbf9 (to pull)
 }
